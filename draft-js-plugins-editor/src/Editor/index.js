@@ -5,6 +5,7 @@ import {
   Editor,
   EditorState,
   DefaultDraftBlockRenderMap,
+  CompositeDecorator,
 } from 'draft-js';
 import { List, Map } from 'immutable';
 import MultiDecorator from './MultiDecorator';
@@ -26,6 +27,7 @@ class PluginEditor extends Component {
     defaultBlockRenderMap: PropTypes.bool,
     customStyleMap: PropTypes.object,
     decorators: PropTypes.array,
+    CompositeDraftDecorator: PropTypes.func,
   };
 
   static defaultProps = {
@@ -34,6 +36,7 @@ class PluginEditor extends Component {
     customStyleMap: {},
     plugins: [],
     decorators: [],
+    CompositeDraftDecorator: CompositeDecorator,
   };
 
   constructor(props) {
@@ -60,7 +63,8 @@ class PluginEditor extends Component {
     const compositeDecorator = createCompositeDecorator(
       decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
       this.getEditorState,
-      this.onChange);
+      this.onChange,
+      this.props.CompositeDraftDecorator);
 
     const customDecorators = decorators
       .filter((decorator) => this.decoratorIsCustom(decorator));

@@ -3,10 +3,9 @@
  */
 
 import { List } from 'immutable';
-import { CompositeDecorator } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
-export default (decorators, getEditorState, setEditorState) => {
+export default (decorators, getEditorState, setEditorState, CompositeDraftDecorator) => {
   const convertedDecorators = List(decorators)
     .map((decorator) => ({
       ...decorator,
@@ -14,5 +13,5 @@ export default (decorators, getEditorState, setEditorState) => {
     }))
     .toJS();
 
-  return new CompositeDecorator(convertedDecorators);
+  return new CompositeDraftDecorator(convertedDecorators);
 };
