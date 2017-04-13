@@ -115,8 +115,14 @@ export class MentionSuggestions extends Component {
     const anchorKey = selection.getAnchorKey();
     const anchorOffset = selection.getAnchorOffset();
 
+    // A small issue with draft-js-mention-plugin@2.0.0-beta10 makes this necessary.
+    // See possibly related https://github.com/draft-js-plugins/draft-js-plugins/issues/687
+    // TODO: Remove this temporary patch when fixed
+    const block = editorState.getCurrentContent().getBlockForKey(anchorKey);
+    const isAlreadyEntity = block.getEntityAt(Math.max(anchorOffset - 1, 0)) !== null;
+
     // the list should not be visible if a range is selected or the editor has no focus
-    if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
+    if (!selection.isCollapsed() || !selection.getHasFocus() || isAlreadyEntity) return removeList();
 
     // identify the start & end positon of each search-text
     const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
