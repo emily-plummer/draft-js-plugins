@@ -59,20 +59,7 @@ class PluginEditor extends Component {
   }
 
   componentWillMount() {
-    const decorators = this.resolveDecorators();
-    const compositeDecorator = createCompositeDecorator(
-      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
-      this.getEditorState,
-      this.onChange,
-      this.props.CompositeDraftDecorator);
-
-    const customDecorators = decorators
-      .filter((decorator) => this.decoratorIsCustom(decorator));
-
-    const multiDecorator = new MultiDecorator(
-      customDecorators.push(compositeDecorator));
-
-    const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
+    const editorState = this.getEditorStateWithCombinedDecorators();
     this.onChange(moveSelectionToEnd(editorState));
   }
 
@@ -124,6 +111,35 @@ class PluginEditor extends Component {
     setReadOnly: this.setReadOnly,
     getEditorRef: this.getEditorRef,
   });
+
+  getEditorStateWithCombinedDecorators() {
+    const decorators = this.resolveDecorators();
+    const compositeDecorator = createCompositeDecorator(
+      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
+      this.getEditorState,
+      this.onChange,
+      this.props.CompositeDraftDecorator);
+
+    const customDecorators = decorators
+      .filter((decorator) => this.decoratorIsCustom(decorator));
+
+    const multiDecorator = new MultiDecorator(
+      [
+        ...customDecorators,
+        compositeDecorator,
+      ]
+    );
+
+    return EditorState.set(this.props.editorState, { decorator: multiDecorator });
+  }
+
+  // Force re-rendering of decorators by attaching a new decorator instance of the same
+  // decorators, which draft-js will consider different when when comparing references.
+  // This method is meant to be called from the outside, on the PluginEditor instance.
+  rerenderDecorators = () => {
+    const editorState = this.getEditorStateWithCombinedDecorators();
+    this.onChange(editorState);
+  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
