@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-plugins-editor",
-  "version": "2.0.0-rc8",
+  "name": "draft-js-plugins-editor-fork",
+  "version": "0.0.2",
   "description": "Editor for DraftJS Plugins",
   "author": {
     "name": "Nik Graf",
@@ -35,7 +35,7 @@
     "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.1",
+    "@bufferapp/draft-js": "0.10.1-fork.1",
     "react": "^15.5.0 || ^16.0.0-rc",
     "react-dom": "^15.5.0 || ^16.0.0-rc"
   }

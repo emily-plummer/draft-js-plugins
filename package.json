@@ -1,7 +1,7 @@
 {
-  "name": "draft-js-plugins",
-  "version": "0.0.0",
-  "description": "A Plugin Architecture on top of Draft.JS",
+  "name": "draft-js-plugins-fork",
+  "version": "0.0.2",
+  "description": "a fork of draft-js-plugins",
   "author": {
     "name": "Nik Graf",
     "email": "nik@nikgraf.com",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nikgraf/draft-js-plugins.git"
+    "url": "https://github.com/emily-plummer/draft-js-plugins"
   },
   "main": "lib/index.js",
   "keywords": [

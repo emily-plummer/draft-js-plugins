@@ -6,7 +6,7 @@ import {
   EditorState,
   DefaultDraftBlockRenderMap,
   CompositeDecorator,
-} from 'draft-js';
+} from '@bufferapp/draft-js';
 import { List, Map } from 'immutable';
 import MultiDecorator from './MultiDecorator';
 import createCompositeDecorator from './createCompositeDecorator';
@@ -124,11 +124,7 @@ class PluginEditor extends Component {
       .filter((decorator) => this.decoratorIsCustom(decorator));
 
     const multiDecorator = new MultiDecorator(
-      [
-        ...customDecorators,
-        compositeDecorator,
-      ]
-    );
+      customDecorators.push(compositeDecorator));
 
     return EditorState.set(this.props.editorState, { decorator: multiDecorator });
   }
