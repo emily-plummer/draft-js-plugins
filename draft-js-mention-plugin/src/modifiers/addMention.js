@@ -1,4 +1,4 @@
-import { Modifier, EditorState } from 'draft-js';
+import { Modifier, EditorState } from '@bufferapp/draft-js';
 import getSearchText from '../utils/getSearchText';
 import getTypeByTrigger from '../utils/getTypeByTrigger';
 

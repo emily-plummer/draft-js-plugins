@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { fromJS, Map } from 'immutable';
-import { ContentState } from 'draft-js';
+import { ContentState } from '@bufferapp/draft-js';
 import { expect } from 'chai';
 import Mention from '../index';
 

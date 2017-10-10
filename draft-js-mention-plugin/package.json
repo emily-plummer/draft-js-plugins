@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-mention-plugin",
-  "version": "2.0.0-rc10",
+  "name": "draft-js-mention-plugin-fork",
+  "version": "0.0.2",
   "description": "Mention Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -36,10 +36,11 @@
     "immutable": "~3.7.4",
     "prop-types": "^15.5.8",
     "lodash.escaperegexp": "^4.1.2",
-    "union-class-names": "^1.0.0"
+    "union-class-names": "^1.0.0",
+    "@bufferapp/draft-js": "0.10.1-fork.1"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.1",
+    "@bufferapp/draft-js": "0.10.1-fork.1",
     "react": "^15.5.0 || ^16.0.0-rc",
     "react-dom": "^15.5.0 || ^16.0.0-rc"
   }

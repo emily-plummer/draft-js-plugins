@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { genKey } from 'draft-js';
+import { genKey } from '@bufferapp/draft-js';
 import { List, fromJS } from 'immutable';
 import escapeRegExp from 'lodash.escaperegexp';
 import Entry from './Entry';
